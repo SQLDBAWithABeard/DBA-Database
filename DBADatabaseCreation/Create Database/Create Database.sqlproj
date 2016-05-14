@@ -60,5 +60,36 @@
   </ItemGroup>
   <ItemGroup>
     <Build Include="- LOAD - Server Data Load.sql" />
+    <Build Include="- INFO - Query For Needs update =1.sql" />
+    <Build Include="- INFO - Various scripts to get information.sql" />
+    <Build Include="- LOAD - Script Data Load.sql" />
+    <Build Include="- LOAD - Update the Needs Update Flag for a server.sql" />
+    <Build Include="- LOAD - Update the Needs Update for a script.sql" />
+    <Build Include="20 - Ola MaintenanceSolution _1_.sql" />
+    <Build Include="30 - RestoreCommand Proc.sql" />
+    <Build Include="40 - RestoreCommand Job Steps.sql" />
+    <Build Include="50 - sp_Blitz.sql" />
+    <Build Include="60 -spAskBrent.sql" />
+    <Build Include="70 - sp_BlitzCache.sql" />
+    <Build Include="80 - sp_BlitzIndex.sql" />
+    <Build Include="90 - sp_BlitzTrace.sql" />
+    <Build Include="100 - who_is_active_v11_11.sql" />
+    <Build Include="110 - Create WhoisActive to Table job.sql" />
+    <Build Include="130 - Create SPBlitz to Table Job.sql" />
+    <Build Include="140 - Create SPAskBrent To Table Agent Job.sql" />
+    <Build Include="150 - OLA Backup - Prod Location1.sql" />
+    <Build Include="160 - OLA Backup - Dev Location1.sql" />
+    <Build Include="170 - OLA Backup - Dev Location2.sql" />
+    <Build Include="180 - OLA Backup - Prod Location 2.sql" />
+    <Build Include="190 - Add Availability Group Alerts.sql" />
+    <Build Include="200 - Enable DBMail.sql" />
+    <Build Include="210 - ADD Basic Trace Extended Event.sql" />
+    <Build Include="220 - Alter Ola Index Maintenance Job.sql" />
+    <Build Include="240 - OLA Backup - Local G.sql" />
+    <Build Include="xx Create DBA-Admin Database.sql" />
+    <Build Include="xx Create DBADatabase.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Add Server to Auto Scripts.docx" />
   </ItemGroup>
 </Project>

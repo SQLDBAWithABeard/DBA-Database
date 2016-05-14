@@ -26,7 +26,7 @@ DECLARE @InstanceName nvarchar(50) = 'MSSQLSERVER'			--- ENTER INSTANCE NAME HER
 DECLARE @Port int = 1433									--- ENTER Port Here EVEN IF DEFAULT
 DECLARE @AG bit = 0											--- Is this an Availability group enabled instance? 1 - Yes 0 - No
 DECLARE @Environment nvarchar(25) = 'PROD'						--- Environment -  Prod, Test, Int,PreProd,Dev etc
-DECLARE @Location nvarchar(30) = ''							--- Location - Slough,Newport,Moon Street etc
+DECLARE @Location nvarchar(30) = ''							--- Location - Data Centre 1 Data Centre 2  etc
 
 
 ---------------------------------------------------------------------------------------------------------------------
