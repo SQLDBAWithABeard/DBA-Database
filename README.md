@@ -16,7 +16,7 @@ This repo contains the scripts to create and populate the DBA Database to automa
     - [- INFO - Query For Needs update =1.sql ](/Setup/SSMS%20Solution%20and%20Scripts/TSQL/-%20INFO%20-%20Query%20For%20Needs%20update%20%3D1.sql) Shows the servers adn scripts you have set to be updated next time the Auto Script install job runs
     - [- INFO - Various scripts to get information.sql](/Setup/SSMS%20Solution%20and%20Scripts/TSQL/-%20INFO%20-%20Various%20scripts%20to%20get%20information.sql) has other generic queries
     - [- INFO - Estate Detailed Information.sql ](/Setup/SSMS%20Solution%20and%20Scripts/TSQL/-%20INFO%20-%20Estate%20Detailed%20Information.sql) Gives more detailed information about an estate, number of servers, databases, sizes, versions, editions, locations, no full backups etc
-- The [PowerBi Reports](Setup/SSMS%20Solution%20and%20Scripts/PowerBi) will need power Bi Desktop a free download from (https://powerbi.microsoft.com/en-us/desktop/) You will need to alter each of the queries to use the server you have the DBA Database on
+- The [PowerBi Reports](Setup/SSMS%20Solution%20and%20Scripts/PowerBi) will need Power Bi Desktop a free download from (https://powerbi.microsoft.com/en-us/desktop/) You will need to alter each of the queries to use the server you have the DBA Database on
 
 ## Blog Posts, Slides and Videos
 
