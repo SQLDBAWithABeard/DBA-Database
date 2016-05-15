@@ -16,3 +16,23 @@ This repo contains the scripts to create and populate the DBA Database to automa
     - [- INFO - Query For Needs update =1.sql ](/Setup/SSMS%20Solution%20and%20Scripts/TSQL/-%20INFO%20-%20Query%20For%20Needs%20update%20%3D1.sql) Shows the servers adn scripts you have set to be updated next time the Auto Script install job runs
     - [- INFO - Various scripts to get information.sql](/Setup/SSMS%20Solution%20and%20Scripts/TSQL/-%20INFO%20-%20Various%20scripts%20to%20get%20information.sql) has other generic queries
     - [- INFO - Estate Detailed Information.sql ](/Setup/SSMS%20Solution%20and%20Scripts/TSQL/-%20INFO%20-%20Estate%20Detailed%20Information.sql) Gives more detailed information about an estate, number of servers, databases, sizes, versions, editions, locations, no full backups etc
+
+## Blog Posts, Slides and Videos
+
+- [Using Power Bi with my DBA Database](https://sqldbawithabeard.com/2015/08/16/using-power-bi-with-my-dba-database/)
+- [Populating My DBA Database for Power Bi with PowerShell – Server
+Info](https://sqldbawithabeard.com/2015/08/31/populating-my-dba-database-for-power-bi-with-powershell-server-info/)
+- [Populating My DBA Database for Power Bi with PowerShell – SQL
+Info](https://sqldbawithabeard.com/2015/09/07/populating-my-dba-database-for-power-bi-with-powershell-sql-info/)
+- [Populating My DBA Database for Power Bi with PowerShell – Databases](https://sqldbawithabeard.com/2015/09/22/populating-my-dba-database-for-power-bi-with-powershell-databases/)
+- [Power Bi, PowerShell and SQL Agent Jobs](https://sqldbawithabeard.com/2015/09/28/power-bi-powershell-and-sql-agent-jobs/)
+
+- PSConfEU - (https://www.youtube.com/watch?v=9BKlrOjMWXk&index=5&list=PLIg9rQe6gY0pHCeB9WpCkyI8_27sC94ZT)
+- PSConfEU - (https://www.youtube.com/watch?v=KIsPXCeIlJw)
+- SQL Relay - (https://www.youtube.com/watch?v=9BKlrOjMWXk&index=5&list=PLIg9rQe6gY0pHCeB9WpCkyI8_27sC94ZT) 
+
+- SQL Relay - (https://onedrive.live.com/view.aspx?cid=c802df42025d5e1f&page=view&resid=C802DF42025D5E1F!128659&parId=C802DF42025D5E1F!128658&app=PowerPoint)
+- PSConfEU - (https://onedrive.live.com/view.aspx?cid=c802df42025d5e1f&page=view&resid=C802DF42025D5E1F!184185&parId=C802DF42025D5E1F!181837&app=PowerPoint)
+
+
+
