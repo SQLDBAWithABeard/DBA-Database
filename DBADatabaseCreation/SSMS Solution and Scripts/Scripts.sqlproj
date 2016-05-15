@@ -59,37 +59,26 @@
   <ItemGroup>
     <Folder Include="Properties" />
     <Folder Include="PowerShell" />
+    <Folder Include="TSQL" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="- LOAD - Server Data Load.sql" />
-    <Build Include="- INFO - Query For Needs update =1.sql" />
-    <Build Include="- INFO - Various scripts to get information.sql" />
-    <Build Include="- LOAD - Script Data Load.sql" />
-    <Build Include="- LOAD - Update the Needs Update Flag for a server.sql" />
-    <Build Include="- LOAD - Update the Needs Update for a script.sql" />
-    <Build Include="20 - Ola MaintenanceSolution _1_.sql" />
-    <Build Include="30 - RestoreCommand Proc.sql" />
-    <Build Include="40 - RestoreCommand Job Steps.sql" />
-    <Build Include="50 - sp_Blitz.sql" />
-    <Build Include="60 -spAskBrent.sql" />
-    <Build Include="70 - sp_BlitzCache.sql" />
-    <Build Include="80 - sp_BlitzIndex.sql" />
-    <Build Include="90 - sp_BlitzTrace.sql" />
-    <Build Include="100 - who_is_active_v11_11.sql" />
-    <Build Include="110 - Create WhoisActive to Table job.sql" />
-    <Build Include="130 - Create SPBlitz to Table Job.sql" />
-    <Build Include="140 - Create SPAskBrent To Table Agent Job.sql" />
-    <Build Include="150 - OLA Backup - Prod Location1.sql" />
-    <Build Include="160 - OLA Backup - Dev Location1.sql" />
-    <Build Include="170 - OLA Backup - Dev Location2.sql" />
-    <Build Include="180 - OLA Backup - Prod Location 2.sql" />
-    <Build Include="190 - Add Availability Group Alerts.sql" />
-    <Build Include="200 - Enable DBMail.sql" />
-    <Build Include="210 - ADD Basic Trace Extended Event.sql" />
-    <Build Include="220 - Alter Ola Index Maintenance Job.sql" />
-    <Build Include="240 - OLA Backup - Local G.sql" />
-    <Build Include="xx Create DBA-Admin Database.sql" />
-    <Build Include="xx Create DBADatabase.sql" />
+    <Build Include="TSQL\- INFO - Query For Needs update =1.sql" />
+    <Build Include="TSQL\- INFO - Various scripts to get information.sql" />
+    <Build Include="TSQL\- LOAD - Script Data Load.sql" />
+    <Build Include="TSQL\- LOAD - Server Data Load.sql" />
+    <Build Include="TSQL\200 - Enable DBMail.sql" />
+    <Build Include="TSQL\210 - ADD Basic Trace Extended Event.sql" />
+    <Build Include="TSQL\220 - Alter Ola Index Maintenance Job.sql" />
+    <Build Include="TSQL\240 - OLA Backup - Local G.sql" />
+    <Build Include="TSQL\30 - RestoreCommand Proc.sql" />
+    <None Include="TSQL\Agent Job - Agent Job results.sql" />
+    <None Include="TSQL\Agent Job - Database Info.sql" />
+    <None Include="TSQL\Agent Job - Script Install Info.sql" />
+    <None Include="TSQL\Agent job - Server Info.sql" />
+    <None Include="TSQL\Agent Job - SQL Info.sql" />
+    <None Include="TSQL\Create Credential and proxy for Agent jobs.sql" />
+    <None Include="TSQL\INFO - All info for a Server.sql" />
+    <Build Include="TSQL\xx Create DBA-Admin Database.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Add Server to Auto Scripts.docx" />
@@ -101,12 +90,26 @@
     <None Include="PowerShell\EmailAgentJob.ps1" />
     <None Include="PowerShell\Schedule-OlaJobs.ps1" />
     <None Include="PowerShell\SQLInfoScriptInstallList.ps1" />
-    <None Include="Create Credential and proxy for Agent jobs.sql" />
-    <None Include="Agent Job - Agent Job results.sql" />
-    <None Include="Agent Job - Database Info.sql" />
-    <None Include="Agent Job - SQL Info.sql" />
-    <None Include="Agent job - Server Info.sql" />
-    <None Include="Agent Job - Script Install Info.sql" />
-    <None Include="INFO - All info for a Server.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="TSQL\- LOAD - Update the Needs Update Flag for a server.sql" />
+    <Build Include="TSQL\- LOAD - Update the Needs Update for a script.sql" />
+    <Build Include="TSQL\100 - who_is_active_v11_11.sql" />
+    <Build Include="TSQL\110 - Create WhoisActive to Table job.sql" />
+    <Build Include="TSQL\130 - Create SPBlitz to Table Job.sql" />
+    <Build Include="TSQL\140 - Create SPAskBrent To Table Agent Job.sql" />
+    <Build Include="TSQL\150 - OLA Backup - Prod Location1.sql" />
+    <Build Include="TSQL\160 - OLA Backup - Dev Location1.sql" />
+    <Build Include="TSQL\170 - OLA Backup - Dev Location2.sql" />
+    <Build Include="TSQL\180 - OLA Backup - Prod Location 2.sql" />
+    <Build Include="TSQL\190 - Add Availability Group Alerts.sql" />
+    <Build Include="TSQL\20 - Ola MaintenanceSolution _1_.sql" />
+    <Build Include="TSQL\40 - RestoreCommand Job Steps.sql" />
+    <Build Include="TSQL\50 - sp_Blitz.sql" />
+    <Build Include="TSQL\60 -spAskBrent.sql" />
+    <Build Include="TSQL\70 - sp_BlitzCache.sql" />
+    <Build Include="TSQL\80 - sp_BlitzIndex.sql" />
+    <Build Include="TSQL\90 - sp_BlitzTrace.sql" />
+    <Build Include="TSQL\xx Create DBADatabase.sql" />
   </ItemGroup>
 </Project>
