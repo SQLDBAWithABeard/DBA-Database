@@ -77,7 +77,7 @@
     <None Include="TSQL\Agent job - Server Info.sql" />
     <None Include="TSQL\Agent Job - SQL Info.sql" />
     <None Include="TSQL\Create Credential and proxy for Agent jobs.sql" />
-    <None Include="TSQL\INFO - All info for a Server.sql" />
+    <None Include="TSQL\- INFO - All info for a Server.sql" />
     <Build Include="TSQL\xx Create DBA-Admin Database.sql" />
   </ItemGroup>
   <ItemGroup>
