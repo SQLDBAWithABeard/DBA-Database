@@ -118,6 +118,5 @@
     <Build Include="TSQL\70 - sp_BlitzCache.sql" />
     <Build Include="TSQL\80 - sp_BlitzIndex.sql" />
     <Build Include="TSQL\90 - sp_BlitzTrace.sql" />
-    <Build Include="TSQL\xx Create DBADatabase.sql" />
   </ItemGroup>
 </Project>
