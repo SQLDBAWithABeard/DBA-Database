@@ -57,6 +57,7 @@
   <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Properties" />
+    <Folder Include="PowerShell" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="- LOAD - Server Data Load.sql" />
@@ -91,5 +92,13 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Add Server to Auto Scripts.docx" />
+    <None Include="PowerShell\DBADatabaseAgentJobResults.ps1" />
+    <None Include="PowerShell\DBADatabaseDatabaseUpdate.ps1" />
+    <None Include="PowerShell\DBADatabaseLastUsed.ps1" />
+    <None Include="PowerShell\DBADatabaseServerupdate.ps1" />
+    <None Include="PowerShell\DBADatabaseSQLInfoUpdate.ps1" />
+    <None Include="PowerShell\EmailAgentJob.ps1" />
+    <None Include="PowerShell\Schedule-OlaJobs.ps1" />
+    <None Include="PowerShell\SQLInfoScriptInstallList.ps1" />
   </ItemGroup>
 </Project>
