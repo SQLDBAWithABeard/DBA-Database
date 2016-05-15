@@ -57,7 +57,8 @@
     <DataWriteAllFilesInOneDirectory>True</DataWriteAllFilesInOneDirectory>
   </WriteToFileOptions>
   <DataFileSet>
-    <Count>1</Count>
+    <Count>2</Count>
     <DataFile>dbo.ScriptList_Data.sql</DataFile>
+    <DataFile>Info.Scriptinstall_Data.sql</DataFile>
   </DataFileSet>
 </DatabaseInformation>

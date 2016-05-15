@@ -17,14 +17,17 @@ CREATE TABLE [Info].[Scriptinstall]
 [HasMatchSQLLoginsJob] [bit] NULL,
 [HasSPBlitzTableJob] [bit] NULL,
 [HasAskBrentToTableAgentJob] [bit] NULL,
-[HasOLANPTPRODJob] [bit] NULL,
-[HasOLANPTDEVJob] [bit] NULL,
-[HasOLASLORODJob] [bit] NULL,
-[HasOLASLODEVJob] [bit] NULL,
+[HasOLAPRODDC1Job] [bit] NULL,
+[HasOLADEVDC1Job] [bit] NULL,
+[HasOLAPRODDC2Job] [bit] NULL,
+[HasOLADEVDC2job] [bit] NULL,
 [AGFailoverAlerts] [bit] NULL,
 [EnableDBMail] [bit] NULL,
-[Add_Basic_Trace_XE] [bit] NULL
+[Add_Basic_Trace_XE] [bit] NULL,
+[HasAScript] [bit] NULL
 ) ON [PRIMARY]
+GO
+ALTER TABLE [Info].[Scriptinstall] ADD CONSTRAINT [PK_Scriptinstall] PRIMARY KEY CLUSTERED  ([ScriptInstallID]) ON [PRIMARY]
 GO
 ALTER TABLE [Info].[Scriptinstall] ADD CONSTRAINT [FK_Scriptinstall_InstanceList] FOREIGN KEY ([InstanceID]) REFERENCES [dbo].[InstanceList] ([InstanceID])
 GO
