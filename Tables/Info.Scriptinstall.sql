@@ -31,3 +31,6 @@ ALTER TABLE [Info].[Scriptinstall] ADD CONSTRAINT [PK_Scriptinstall] PRIMARY KEY
 GO
 ALTER TABLE [Info].[Scriptinstall] ADD CONSTRAINT [FK_Scriptinstall_InstanceList] FOREIGN KEY ([InstanceID]) REFERENCES [dbo].[InstanceList] ([InstanceID])
 GO
+ [bit]
+ALTER TABLE [Info].[Scriptinstall] ADD CONSTRAINT [FK_Scriptinstall_InstanceList] FOREIGN KEY ([InstanceID]) REFERENCES [dbo].[InstanceList] ([InstanceID])
+GO
