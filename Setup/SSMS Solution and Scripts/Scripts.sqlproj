@@ -90,6 +90,7 @@
     <None Include="PowerShell\EmailAgentJob.ps1" />
     <None Include="PowerShell\Schedule-OlaJobs.ps1" />
     <None Include="PowerShell\SQLInfoScriptInstallList.ps1" />
+    <None Include="PowerShell\Auto Update PS job steps.ps1" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="TSQL\- LOAD - Update the Needs Update Flag for a server.sql" />
