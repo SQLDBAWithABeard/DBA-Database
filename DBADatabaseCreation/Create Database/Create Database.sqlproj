@@ -100,5 +100,12 @@
     <None Include="PowerShell\EmailAgentJob.ps1" />
     <None Include="PowerShell\Schedule-OlaJobs.ps1" />
     <None Include="PowerShell\SQLInfoScriptInstallList.ps1" />
+    <None Include="Create Credential and proxy for Agent jobs.sql" />
+    <None Include="Agent Job - Agent Job results.sql" />
+    <None Include="Agent Job - Database Info.sql" />
+    <None Include="Agent Job - SQL Info.sql" />
+    <None Include="Agent job - Server Info.sql" />
+    <None Include="Agent Job - Script Install Info.sql" />
+    <None Include="INFO - All info for a Server.sql" />
   </ItemGroup>
 </Project>

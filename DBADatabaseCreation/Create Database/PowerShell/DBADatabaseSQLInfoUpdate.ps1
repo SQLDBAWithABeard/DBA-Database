@@ -455,7 +455,7 @@ INSERT INTO [Info].[SQLInfo]
   AND [InstanceName] = '$InstanceName'
   AND [Port] = '$Port')
             ,'$AGListener'
-            ,$AGs )
+            ,'$AGs' )
 GO
 "@
 }

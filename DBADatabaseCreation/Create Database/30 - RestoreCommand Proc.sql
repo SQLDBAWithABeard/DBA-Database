@@ -1,4 +1,10 @@
-﻿CREATE PROCEDURE [dbo].[RestoreCommand] AS
+﻿USE [DBA-Admin]
+GO
+IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.ROUTINES WHERE ROUTINE_NAME = 'RestoreCommand')
+	EXEC ('CREATE PROC dbo.RestoreCommand AS SELECT ''stub version, to be replaced''')
+GO
+
+ALTER PROCEDURE [dbo].[RestoreCommand] AS
 
 /*************************************************************************************************************
 Script for creating automated restore scripts based on Ola Hallengren's Maintenance Solution. 
