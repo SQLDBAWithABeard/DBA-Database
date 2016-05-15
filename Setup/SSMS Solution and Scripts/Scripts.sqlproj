@@ -60,6 +60,7 @@
     <Folder Include="Properties" />
     <Folder Include="PowerShell" />
     <Folder Include="TSQL" />
+    <Folder Include="PowerBi" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="TSQL\- INFO - Query For Needs update =1.sql" />
@@ -92,6 +93,11 @@
     <None Include="PowerShell\SQLInfoScriptInstallList.ps1" />
     <None Include="PowerShell\Auto Update PS job steps.ps1" />
     <None Include="TSQL\- INFO - Estate Detailed Information.sql" />
+    <None Include="PowerBi\Beard Demo Databases.pbix" />
+    <None Include="PowerBi\Beard Demo SQL Agent Jobs.pbix" />
+    <None Include="PowerBi\Beard Demo SQL.pbix" />
+    <None Include="PowerBi\Location.pbix" />
+    <None Include="PowerBi\Servers.pbix" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="TSQL\- LOAD - Update the Needs Update Flag for a server.sql" />
