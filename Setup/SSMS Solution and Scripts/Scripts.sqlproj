@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>Scripts</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{06081165-96c4-417e-8c31-5bd8db4b2a0a}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>Create_Database</RootNamespace>
+    <AssemblyName>Create_Database</AssemblyName>
+    <ModelCollation>1033, CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+    <TargetDatabase>Create Database</TargetDatabase>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Condition="'$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="PowerShell" />
+    <Folder Include="TSQL" />
+    <Folder Include="PowerBi" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="TSQL\- INFO - Query For Needs update =1.sql" />
+    <Build Include="TSQL\- INFO - Various scripts to get information.sql" />
+    <Build Include="TSQL\- LOAD - Script Data Load.sql" />
+    <Build Include="TSQL\- LOAD - Server Data Load.sql" />
+    <Build Include="TSQL\200 - Enable DBMail.sql" />
+    <Build Include="TSQL\210 - ADD Basic Trace Extended Event.sql" />
+    <Build Include="TSQL\220 - Alter Ola Index Maintenance Job.sql" />
+    <Build Include="TSQL\240 - OLA Backup - Local G.sql" />
+    <Build Include="TSQL\30 - RestoreCommand Proc.sql" />
+    <None Include="TSQL\Agent Job - Agent Job results.sql" />
+    <None Include="TSQL\Agent Job - Database Info.sql" />
+    <None Include="TSQL\Agent Job - Script Install Info.sql" />
+    <None Include="TSQL\Agent job - Server Info.sql" />
+    <None Include="TSQL\Agent Job - SQL Info.sql" />
+    <None Include="TSQL\Create Credential and proxy for Agent jobs.sql" />
+    <None Include="TSQL\- INFO - All info for a Server.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Add Server to Auto Scripts.docx" />
+    <None Include="PowerShell\DBADatabaseAgentJobResults.ps1" />
+    <None Include="PowerShell\DBADatabaseDatabaseUpdate.ps1" />
+    <None Include="PowerShell\DBADatabaseLastUsed.ps1" />
+    <None Include="PowerShell\DBADatabaseServerupdate.ps1" />
+    <None Include="PowerShell\DBADatabaseSQLInfoUpdate.ps1" />
+    <None Include="PowerShell\EmailAgentJob.ps1" />
+    <None Include="PowerShell\Schedule-OlaJobs.ps1" />
+    <None Include="PowerShell\SQLInfoScriptInstallList.ps1" />
+    <None Include="PowerShell\Auto Update PS job steps.ps1" />
+    <None Include="TSQL\- INFO - Estate Detailed Information.sql" />
+    <None Include="PowerBi\Beard Demo Databases.pbix" />
+    <None Include="PowerBi\Beard Demo SQL Agent Jobs.pbix" />
+    <None Include="PowerBi\Beard Demo SQL.pbix" />
+    <None Include="PowerBi\Location.pbix" />
+    <None Include="PowerBi\Servers.pbix" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="TSQL\- LOAD - Update the Needs Update Flag for a server.sql" />
+    <Build Include="TSQL\- LOAD - Update the Needs Update for a script.sql" />
+    <Build Include="TSQL\100 - who_is_active_v11_11.sql" />
+    <Build Include="TSQL\110 - Create WhoisActive to Table job.sql" />
+    <Build Include="TSQL\130 - Create SPBlitz to Table Job.sql" />
+    <Build Include="TSQL\140 - Create SPAskBrent To Table Agent Job.sql" />
+    <Build Include="TSQL\150 - OLA Backup - Prod Location1.sql" />
+    <Build Include="TSQL\160 - OLA Backup - Dev Location1.sql" />
+    <Build Include="TSQL\170 - OLA Backup - Dev Location2.sql" />
+    <Build Include="TSQL\180 - OLA Backup - Prod Location 2.sql" />
+    <Build Include="TSQL\190 - Add Availability Group Alerts.sql" />
+    <Build Include="TSQL\20 - Ola MaintenanceSolution _1_.sql" />
+    <Build Include="TSQL\40 - RestoreCommand Job Steps.sql" />
+    <Build Include="TSQL\50 - sp_Blitz.sql" />
+    <Build Include="TSQL\60 -spAskBrent.sql" />
+    <Build Include="TSQL\70 - sp_BlitzCache.sql" />
+    <Build Include="TSQL\80 - sp_BlitzIndex.sql" />
+    <Build Include="TSQL\90 - sp_BlitzTrace.sql" />
+  </ItemGroup>
+</Project>
