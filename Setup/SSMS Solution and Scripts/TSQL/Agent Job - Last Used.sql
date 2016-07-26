@@ -40,8 +40,8 @@ EXEC @ReturnCode = msdb.dbo.sp_add_jobstep @job_id=@jobId, @step_name=N'Run Powe
 & .\''!DBA Database Update LastUsed.ps1''', 
               @database_name=N'master', 
               @output_file_name=N'\LastUpdateoutput.txt', 
-              @flags=0, 
-           --   @proxy_name=N''
+              @flags=0 
+           --   ,@proxy_name=N''
 IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback
 EXEC @ReturnCode = msdb.dbo.sp_update_job @job_id = @jobId, @start_step_id = 1
 IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback
