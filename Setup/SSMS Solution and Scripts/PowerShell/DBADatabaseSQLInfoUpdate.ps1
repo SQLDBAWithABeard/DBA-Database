@@ -1,4 +1,4 @@
-<# 
+﻿ <# 
 .SYNOPSIS  
      This Script will check all of the instances in the InstanceList and gather SQL Configuration Info and save to the Info.SQLInfo table
 
@@ -9,20 +9,21 @@
 
 .EXAMPLE 
 
+
+
 .NOTES 
     AUTHOR: Rob Sewell sqldbawithabeard.com 
     DATE: 22/05/2015 - Initial
             21/07/2015 - Added Inactive column to gather instances query
-            19/08/2015 - Added not contactable to the server list query
 #> 
 
 
 # Load SMO extension
-[System.Reflection.Assembly]::LoadWithPartialName('Microsoft.SqlServer.Smo') | Out-Null;
-$Date = Get-Date -Format ddMMyyyy_HHmmss
-$LogFile = 'LogFiles\DBADatabaseSQLInfoUpdate_' + $Date + '.log'
+[System.Reflection.Assembly]::LoadWithPartialName("Microsoft.SqlServer.Smo") | Out-Null;
 $CentralDBAServer = ''
 $CentralDatabaseName = 'DBADatabase'
+$Date = Get-Date -Format ddMMyyyy_HHmmss
+$LogFile = "\LogFile\DBADatabaseSQLInfoUpdate_" + $Date + ".log"
 
 <#
 .Synopsis
@@ -69,7 +70,7 @@ function Write-Log
                    ValueFromPipelineByPropertyName=$true,
                    Position=0)]
         [ValidateNotNullOrEmpty()]
-        [Alias('LogContent')]
+        [Alias("LogContent")]
         [string]$Message,
 
         # The path to the log file.
@@ -77,13 +78,13 @@ function Write-Log
                    ValueFromPipelineByPropertyName=$true,
                    Position=1)]
         [Alias('LogPath')]
-        [string]$Path='C:\Logs\PowerShellLog.log',
+        [string]$Path="C:\Logs\PowerShellLog.log",
 
         [Parameter(Mandatory=$false,
                     ValueFromPipelineByPropertyName=$true,
                     Position=3)]
-        [ValidateSet('Error','Warn','Info')]
-        [string]$Level='Info',
+        [ValidateSet("Error","Warn","Info")]
+        [string]$Level="Info",
 
         [Parameter(Mandatory=$false)]
         [switch]$NoClobber
@@ -115,15 +116,15 @@ function Write-Log
         switch ($Level) {
             'Error' {
                 Write-Error $Message
-                Write-Output "$(Get-Date -Format 'yyyy-MM-dd HH:mm:ss') ERROR: $Message" | Out-File -FilePath $Path -Append
+                Write-Output "$(Get-Date -Format "yyyy-MM-dd HH:mm:ss") ERROR: $Message" | Out-File -FilePath $Path -Append
                 }
             'Warn' {
                 Write-Warning $Message
-                Write-Output "$(Get-Date -Format 'yyyy-MM-dd HH:mm:ss') WARNING: $Message" | Out-File -FilePath $Path -Append
+                Write-Output "$(Get-Date -Format "yyyy-MM-dd HH:mm:ss") WARNING: $Message" | Out-File -FilePath $Path -Append
                 }
             'Info' {
                 Write-Verbose $Message
-                Write-Output "$(Get-Date -Format 'yyyy-MM-dd HH:mm:ss') INFO: $Message" | Out-File -FilePath $Path -Append
+                Write-Output "$(Get-Date -Format "yyyy-MM-dd HH:mm:ss") INFO: $Message" | Out-File -FilePath $Path -Append
                 }
             }
     }
@@ -136,112 +137,122 @@ function Catch-Block
 {
 param ([string]$Additional)
 $ErrorMessage = " On $Connection " + $Additional + $_.Exception.Message + $_.Exception.InnerException.InnerException.message
-$Message = ' This message came from the Automated Powershell script updating the DBA Database with SQL Information'
-$Msg = $Additional + $ErrorMessage + ' ' + $Message
+$Message = " This message came from the Automated Powershell script updating the DBA Database with SQL Information"
+$Msg = $Additional + $ErrorMessage + " " + $Message
 Write-Log -Path $LogFile -Message $ErrorMessage -Level Error
-Write-EventLog -LogName Application -Source 'SQLAUTOSCRIPT' -EventId 1 -EntryType Error -Message $Msg
+## Write-EventLog -LogName Application -Source "SQLAUTOSCRIPT" -EventId 1 -EntryType Error -Message $Msg
 }
+
+
 
 # Create Log File
 
 try{
 New-Item -Path $LogFile -ItemType File
-$Msg = 'New File Created'
+$Msg = "New File Created"
 Write-Log -Path $LogFile -Message $Msg
 }
 catch
 {
 $ErrorMessage = $_.Exception.Message
 $FailedItem = $_.Exception.ItemName
-$Message = ' This message came from the Automated Powershell script updating the DBA Database with SQL Information'
+$Message = " This message came from the Automated Powershell script updating the DBA Database with SQL Information"
 
-$Msg = $ErrorMessage + ' ' + $FailedItem + ' ' + $Message
-Write-EventLog -LogName Application -Source 'SQLAUTOSCRIPT' -EventId 1 -EntryType Error -Message $Msg
+$Msg = $ErrorMessage + " " + $FailedItem + " " + $Message
+#Write-EventLog -LogName Application -Source "SQLAUTOSCRIPT" -EventId 1 -EntryType Error -Message $Msg
 }
 
-Write-Log -Path $LogFile -Message ' Script Started'
 
- $Query = @"
- SELECT [ServerName]
+Write-Log -Path $LogFile -Message " Script Started"
+
+$Query = @"
+SELECT [ServerName]
       ,[InstanceName]
       ,[Port]
   FROM [DBADatabase].[dbo].[InstanceList]
   Where Inactive = 0 
-    AND NotContactable = 0
+  AND NotContactable = 0
 "@
+
+
 
 try{
 $AlltheServers= Invoke-Sqlcmd -ServerInstance $CentralDBAServer -Database $CentralDatabaseName -Query $query
-$ServerNames = $AlltheServers| Select-Object ServerName,InstanceName,Port
+$ServerNames = $AlltheServers| Select ServerName,InstanceName,Port
+Write-Log -Path $LogFile -Message "Gathered Servers from DBA Database"
 }
 catch
 {
-Catch-Block ' Failed to gather Server and Instance names from the DBA Database'
+Catch-Block " Failed to gather Server and Instance names from the DBA Database"
 }
 
 foreach ($ServerName in $ServerNames)
 {
 ## $ServerName
-$InstanceName =  $ServerName|Select-Object InstanceName -ExpandProperty InstanceName
-$Port = $ServerName| Select-Object Port -ExpandProperty Port
-$ServerName = $ServerName|Select-Object ServerName -ExpandProperty ServerName 
-$Connection = $ServerName + '\' + $InstanceName + ',' + $Port
+$InstanceName =  $ServerName|Select InstanceName -ExpandProperty InstanceName
+$Port = $ServerName| Select Port -ExpandProperty Port
+$ServerName = $ServerName|Select ServerName -ExpandProperty ServerName 
+ $Connection = $ServerName + '\' + $InstanceName + ',' + $Port
 
- try
- {
- $srv = New-Object ('Microsoft.SqlServer.Management.Smo.Server') $Connection
- }
+try
+{
+$srv = New-Object ('Microsoft.SqlServer.Management.Smo.Server') $Connection
+}
 catch
 {
 Catch-Block " Failed to connect to $Connection"
 continue
 }
- if (!( $srv.version)){
- Catch-Block " Failed to Connect to $Connection"
- continue
- }
+if (!( $srv.version)){
+Catch-Block " Failed to Connect to $Connection"
+continue
+}
+$AGs = 'None'
+$Listeners = 'None'
+$ListPort = 'None'
+$ListIps = 'None'
 if ($srv.IsHadrEnabled -eq $True)
- {$IsHADREnabled = $True
- $AGs = $srv.AvailabilityGroups|Select-Object Name -ExpandProperty Name|Out-String
- $Expression = @{Name = 'ListenerPort' ; Expression = {$_.Name + ',' + $_.PortNumber }}
- $AGListener =  $srv.AvailabilityGroups.AvailabilityGroupListeners|Select-Object $Expression|Select-Object ListenerPort -ExpandProperty ListenerPort
- }
- else
- {
- $IsHADREnabled = $false
- $AGs = 'None'
- $AGListener = 'None'
- }
- $BAckupDirectory = $srv.BackupDirectory
- $BrowserAccount = $srv.BrowserServiceAccount
- $BrowserStartMode = $srv.BrowserStartMode
- $IsSQLClustered =  $srv.IsClustered # is sqlclustered
- $ClusterName = $srv.ClusterName
- $ClusterQuorumstate = $srv.ClusterQuorumState
- $ClusterQuorumType = $srv.ClusterQuorumType
- $Collation = $srv.Collation
- $C2AuditMode = $srv.Configuration.C2AuditMode.ConfigValue
- $CostThresholdForParallelism = $srv.Configuration.CostThresholdForParallelism.ConfigValue
- $MaxDegreeOfParallelism =$srv.Configuration.MaxDegreeOfParallelism.ConfigValue
- $DBMailEnabled = $srv.Configuration.DatabaseMailEnabled.ConfigValue
- $DefaultBackupCComp = $srv.Configuration.DefaultBackupCompression.ConfigValue
- $FillFactor = $srv.Configuration.FillFactor.ConfigValue
- $MaxMem = $srv.Configuration.MaxServerMemory.ConfigValue
- $MinMem = $srv.Configuration.MinServerMemory.ConfigValue
- $RemoteDacEnabled = $srv.Configuration.RemoteDacConnectionsEnabled.ConfigValue
- $XPCmdShellEnabled = $srv.Configuration.XPCmdShellEnabled.ConfigValue
- $CommonCriteriaComplianceEnabled = $srv.Configuration.CommonCriteriaComplianceEnabled.ConfigValue
- $DefaultFile = $srv.DefaultFile
- $DefaultLog = $srv.DefaultLog
-$Edition = $srv.Edition
-if($srv.version.Major -eq 8) # Check for SQL 2000 boxes
-{
-$HADREndpointPort = '0'
+{$IsHADREnabled = $True
+$AG = $srv.AvailabilityGroups
+$AGs = $AG|Select Name -ExpandProperty Name|Out-String
+$List = $AG |Select AvailabilityGroupListeners  -ExpandProperty AvailabilityGroupListeners
+$Listeners = $List |Select Name -ExpandProperty Name|Out-String
+$ListPort = $List|Select PortNumber -ExpandProperty PortNumber |Out-String
+  $ListIps = ($List | Select ClusterIPConfiguration -ExpandProperty ClusterIPConfiguration |Out-String).Replace("'","") 
+
 }
 else
 {
+$IsHADREnabled = $false
+}
+$BAckupDirectory = $srv.BackupDirectory
+$BrowserAccount = $srv.BrowserServiceAccount
+$BrowserStartMode = $srv.BrowserStartMode
+$IsSQLClustered =  $srv.IsClustered # is sqlclustered
+$ClusterName = $srv.ClusterName
+$ClusterQuorumstate = $srv.ClusterQuorumState
+$ClusterQuorumType = $srv.ClusterQuorumType
+$Collation = $srv.Collation
+$C2AuditMode = $srv.Configuration.C2AuditMode.ConfigValue
+$CostThresholdForParallelism = $srv.Configuration.CostThresholdForParallelism.ConfigValue
+$MaxDegreeOfParallelism =$srv.Configuration.MaxDegreeOfParallelism.ConfigValue
+$DBMailEnabled = $srv.Configuration.DatabaseMailEnabled.ConfigValue
+$DefaultBackupCComp = $srv.Configuration.DefaultBackupCompression.ConfigValue
+$FillFactor = $srv.Configuration.FillFactor.ConfigValue
+$MaxMem = $srv.Configuration.MaxServerMemory.ConfigValue
+$MinMem = $srv.Configuration.MinServerMemory.ConfigValue
+$RemoteDacEnabled = $srv.Configuration.RemoteDacConnectionsEnabled.ConfigValue
+$XPCmdShellEnabled = $srv.Configuration.XPCmdShellEnabled.ConfigValue
+$CommonCriteriaComplianceEnabled = $srv.Configuration.CommonCriteriaComplianceEnabled.ConfigValue
+$DefaultFile = $srv.DefaultFile
+$DefaultLog = $srv.DefaultLog
+$Edition = $srv.Edition
+if($srv.version.Major -gt 8)
+{
 $HADREndpointPort = ($srv.Endpoints|Where-Object{$_.EndpointType -eq 'DatabaseMirroring'}).Protocol.Tcp.ListenerPort 
 }
+else
+{$HADREndpointPort = '0'}
 if(!$HADREndpointPort)
 {$HADREndpointPort = '0'}
 $ErrorLogPath = $srv.ErrorLogPath
@@ -261,19 +272,19 @@ $SQLService = $srv.ServiceName
 $SQLServiceStartMode = $srv.ServiceStartMode
 $VersionString = $srv.VersionString
 if($VersionString.split('.')[0] -eq 8)
-{$Version = 'SQL 2000'}
+{$Version = "SQL 2000"}
 if($VersionString.split('.')[0] -eq 9)
-{$Version = 'SQL 2005'}
+{$Version = "SQL 2005"}
 if($VersionString.split('.')[0] -eq 10 -and $VersionString.split('.')[1] -eq 0)
-{$Version = 'SQL 2008'}
+{$Version = "SQL 2008"}
 if($VersionString.split('.')[0] -eq 10 -and $VersionString.split('.')[1] -eq 50)
-{$Version = 'SQL 2008 R2'}
+{$Version = "SQL 2008 R2"}
 if($VersionString.split('.')[0] -eq 11)
-{$Version = 'SQL 2012'}
+{$Version = "SQL 2012"}
 if($VersionString.split('.')[0] -eq 12)
-{$Version = 'SQL 2014'}
+{$Version = "SQL 2014"}
 $OptimizeAdhocWorkloads = $srv.Configuration.OptimizeAdhocWorkloads.ConfigValue
-
+Write-Log -Path $LogFile -Message "Gathered Information from $Connection"
 try{
 $Exists = Invoke-Sqlcmd -ServerInstance $CentralDBAServer -Database $CentralDatabaseName -Query "SELECT [ServerName] ,[InstanceName]FROM [DBADatabase].[Info].[SQLInfo] WHERE ServerName = '$ServerName' AND [InstanceName] = '$InstanceName'"
 }
@@ -283,6 +294,7 @@ Break}
 if ($Exists)
 {
 Write-Log -Path $LogFile -Message "Updating SQL Info for $ServerName $InstanceName"
+## Write-Log -Path $LogFile -Message "  $Listeners  " ## for troubleshooting
 $query = @"
 USE [DBADatabase]
 GO
@@ -333,14 +345,10 @@ UPDATE [Info].[SQLInfo]
       ,[MasterDBPath] = '$MasterDBPath'
       ,[NamedPipesEnabled] = '$NamedPipesEnabled'
       ,[OptimizeAdhocWorkloads] = '$OptimizeAdhocWorkloads' 
-      ,[InstanceID] = (SELECT [InstanceID]
-  FROM [DBADatabase].[dbo].[InstanceList]
-  WHERE [ServerName] = '$ServerName'
-  AND [InstanceName] = '$InstanceName'
-  AND [Port] = '$Port')
-      ,[AGListener] = '$AGListener'
-      ,[AGs] = '$AGs'
-      
+      ,[AGListener] = '$Listeners'
+      ,[AGs] ='$AGs'
+      ,[AGListenerPort] = '$ListPort'
+      ,[AGListenerIPs] = '$ListIps'
 WHERE ServerName = '$ServerName' AND [InstanceName] = '$InstanceName'
 GO
 "@
@@ -399,9 +407,10 @@ INSERT INTO [Info].[SQLInfo]
            ,[MasterDBPath]
            ,[NamedPipesEnabled]
            ,[OptimizeAdhocWorkloads]
-           ,[InstanceID]
            ,[AGListener]
-           ,[AGs])
+           ,[AGs]
+           ,[AGListenerPort]
+           ,[AGListenerIPs])
      VALUES
            (GetDate()
            ,GetDate()
@@ -449,24 +458,21 @@ INSERT INTO [Info].[SQLInfo]
            ,'$MasterDBPath'
            ,'$NamedPipesEnabled'
            ,'$OptimizeAdhocWorkloads'
-           ,(SELECT [InstanceID]
-  FROM [DBADatabase].[dbo].[InstanceList]
-  WHERE [ServerName] = '$ServerName'
-  AND [InstanceName] = '$InstanceName'
-  AND [Port] = '$Port')
-            ,'$AGListener'
-            ,'$AGs' )
+           , '$Listeners'
+            ,'$AGs'
+            ,'$ListPort'
+            ,'$ListIps' )
 GO
 "@
 }
-#$query
+# Write-Log -Path $LogFile -Message "$query"  ## for troubleshooting
 try{
 Invoke-Sqlcmd -ServerInstance $CentralDBAServer -Database $CentralDatabaseName -Query $query -ErrorAction Stop
 Write-Log -Path $LogFile -Message "DBA Database updated for $ServerName $InstanceName"
 }
 catch
-{Catch-Block 'Failed to add info to DBA Database'
+{Catch-Block "Failed to add info to DBA Database"
 Write-Log -Path $LogFile -Message "Query -- $Query"}
 }
 
-Write-Log -Path $LogFile -Message 'Script Finished'
+Write-Log -Path $LogFile -Message "Script Finished" 
