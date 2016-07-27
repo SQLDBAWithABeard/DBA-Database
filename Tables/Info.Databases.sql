@@ -37,7 +37,8 @@ CREATE TABLE [Info].[Databases]
 [SnapshotIsolationState] [nvarchar] (10) COLLATE Latin1_General_CI_AS NULL,
 [SpaceAvailableKB] [float] NULL,
 [Status] [nvarchar] (35) COLLATE Latin1_General_CI_AS NULL,
-[TargetRecoveryTime] [int] NULL
+[TargetRecoveryTime] [int] NULL,
+[InActive] [bit] NULL
 ) ON [PRIMARY]
 GO
 ALTER TABLE [Info].[Databases] ADD CONSTRAINT [PK_Databases] PRIMARY KEY CLUSTERED  ([DatabaseID]) ON [PRIMARY]

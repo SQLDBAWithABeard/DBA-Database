@@ -49,7 +49,9 @@ CREATE TABLE [Info].[SQLInfo]
 [OptimizeAdhocWorkloads] [bit] NULL,
 [InstanceID] [int] NULL,
 [AGListener] [nvarchar] (150) COLLATE Latin1_General_CI_AS NULL,
-[AGs] [nvarchar] (150) COLLATE Latin1_General_CI_AS NULL
+[AGs] [nvarchar] (150) COLLATE Latin1_General_CI_AS NULL,
+[AGListenerPort] [nvarchar] (250) COLLATE Latin1_General_CI_AS NULL,
+[AGListenerIPs] [nvarchar] (150) COLLATE Latin1_General_CI_AS NULL
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
 ALTER TABLE [Info].[SQLInfo] ADD CONSTRAINT [PK__SQL__50A5926BC7005F29] PRIMARY KEY CLUSTERED  ([SQLInfoID]) ON [PRIMARY]

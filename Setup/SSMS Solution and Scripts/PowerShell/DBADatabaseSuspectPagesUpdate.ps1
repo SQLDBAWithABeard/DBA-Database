@@ -14,8 +14,8 @@
 #> 
 
 $Date = Get-Date -Format ddMMyyyy_HHmmss
-$LogFile = 'K:\SQLBACKUP\LogFile\DBADatabaseSuspectPagesUpdate_' + $Date + '.log'
-$CentralDBAServer = 'HMDBS02'
+$LogFile = '\LogFile\DBADatabaseSuspectPagesUpdate_' + $Date + '.log'
+$CentralDBAServer = ''
 $CentralDatabaseName = 'DBADatabase'
 # Load SMO extension
 [System.Reflection.Assembly]::LoadWithPartialName('Microsoft.SqlServer.Smo') | Out-Null;
