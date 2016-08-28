@@ -1,3 +1,27 @@
+
+## While this repo is still useful It is no longer being updated
+
+Please use the dbareports repo for the latest (much improved) code
+
+https://github.com/SQLDBAWithABeard/dbareports 
+
+https://dbareports.io
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # DBA-Database-Creation-and-Population
 This repo contains the scripts to create and populate the DBA Database to automatically gather information about your estate
 
