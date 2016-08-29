@@ -9,7 +9,7 @@ build: false
 test_script:
 # Test with native PS version
   - ps: . .\Tests\appveyor.pester.ps1
-# Test with PS version 2
-  - ps: powershell.exe -version 2.0 -executionpolicy bypass -noprofile -file .\Tests\appveyor.pester.ps1
+# Test with PS version 4
+  - ps: powershell.exe -version 4.0 -executionpolicy bypass -noprofile -file .\Tests\appveyor.pester.ps1
 # Finalize pass - collect and upload results
   - ps: . .\Tests\appveyor.pester.ps1 -Finalize
