@@ -75,7 +75,7 @@ SELECT  [ID]
 	WHEN 'BACKUP_LOG'
 	THEN CHARINDEX('.trn', Command)
 	WHEN 'BACKUP_DATABASE'
-	THEN CHARINDEX('.bak', Command)
+	THEN LEN(Command) - CHARINDEX('kab.',REVERSE(Command) -2
 	END filechar
   FROM [dbo].[CommandLog]
   WHERE CommandType IN ('BACKUP_LOG', 'BACKUP_DATABASE')
